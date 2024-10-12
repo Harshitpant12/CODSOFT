@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    //random number
     srand((unsigned int)time(NULL));
     int number = (rand() % 100) + 1;
 
