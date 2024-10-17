@@ -11,7 +11,7 @@ int main()
 
     int guess;
 
-    while (guess != number)
+    do
     {
         cout << "Guess a number between 1 to 100: " << endl;
         cin >> guess;
@@ -28,7 +28,7 @@ int main()
         {
             cout << "You got it, You WON!!!" << endl;
         }
-    }
+    }while (guess != number);
 
     return 0;
 }
