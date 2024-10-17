@@ -20,6 +20,19 @@ void sample_board()
     cout << "   " << "   |   " << "   |   " << endl;
 }
 
+void clear_board()
+{
+    board[0] = ' ';
+    board[1] = ' ';
+    board[2] = ' ';
+    board[3] = ' ';
+    board[4] = ' ';
+    board[5] = ' ';
+    board[6] = ' ';
+    board[7] = ' ';
+    board[8] = ' ';
+}
+
 void show_board()
 {
 
@@ -40,87 +53,6 @@ void getComputerChoice()
 {
     srand((unsigned int)time(NULL));
     int choice;
-    // help the computer to not loose the game easily
-    //  if (board[0] && board[1] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 2;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[3] && board[4] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 5;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[6] && board[7] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 8;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[0] && board[2] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 1;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[3] && board[5] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 4;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[6] && board[8] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 7;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[2] && board[1] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 0;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[5] && board[4] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 3;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else if (board[8] && board[7] == 'X')
-    //  {
-    //      do
-    //      {
-    //          choice = 6;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
-    //  else
-    //  {
-    //      do
-    //      {
-    //          choice = rand() % 10;
-    //      } while (board[choice] != ' ');
-    //      board[choice] = 'O';
-    //  }
     do
     {
         choice = rand() % 10;
@@ -239,48 +171,6 @@ char checkWinner()
     }
 }
 
-void compVsPlayer()
-{
-    string player_name;
-    cout << "Enter your name: " << endl;
-    cin >> player_name;
-    while (true)
-    {
-        system("cls");
-        show_board();
-        if (boardCount('X') == boardCount('O'))
-        {
-            cout << player_name << "'s Turn." << endl;
-            xChoice();
-        }
-        else
-        {
-            getComputerChoice();
-        }
-        char winner = checkWinner();
-        if (winner == 'X')
-        {
-            system("cls");
-            show_board();
-            cout << player_name << " won the game." << endl;
-            break;
-        }
-        else if (winner == 'O')
-        {
-            system("cls");
-            show_board();
-            cout << "Computer won the game." << endl;
-            break;
-        }
-        else if (winner == 'D')
-        {
-            system("cls");
-            show_board();
-            cout << "Game is Draw." << endl;
-            break;
-        }
-    }
-}
 void playerVsPlayer()
 {
     string x_player_name, o_player_name;
@@ -329,31 +219,14 @@ int main()
 {
     cout << "This is the sample board and the given positions will be used to take input." << endl;
     sample_board();
-    int any;
-    cout << "Enter any number to continue" << endl;
-    cin >> any;
-    system("cls");
-
-    int mode;
-
-    cout << "There are two choices : " << endl
-         << "1. Computer vs Player." << endl
-         << "2.Player vs Player." << endl;
-    cout << "Select mode by entering your choice as 1 or 2 : " << endl;
-    cin >> mode;
-
-    switch (mode)
+    char play;
+    do
     {
-    case 1:
-        compVsPlayer();
-        break;
-    case 2:
         playerVsPlayer();
-        break;
-    default:
-        cout << "Please select valid mode." << endl;
-        break;
-    }
+        cout << "play?";
+        cin >> play;
+        clear_board();
+    } while (play == 'y');
 
-        return 0;
+    return 0;
 }
