@@ -49,28 +49,17 @@ void show_board()
     cout << "   " << "   |   " << "   |   " << endl;
 }
 
-void getComputerChoice()
-{
-    srand((unsigned int)time(NULL));
-    int choice;
-    do
-    {
-        choice = rand() % 10;
-    } while (board[choice] != ' ');
-    board[choice] = 'O';
-}
-
 void xChoice()
 {
     while (true)
     {
-        cout << "Select Your Position(1-9) : ";
+        cout << "Select Your Position between 1 to 9 : ";
         int choice;
         cin >> choice;
         choice--;
         if (choice < 0 || choice > 8)
         {
-            cout << "Invalid choice!!! Please Select Your choice from (1-9). " << endl;
+            cout << "Invalid choice!!! Please Select Your choice from between 1 to 9. " << endl;
         }
         else if (board[choice] != ' ')
         {
@@ -87,7 +76,7 @@ void oChoice()
 {
     while (true)
     {
-        cout << "Select Your Position(1-9) : ";
+        cout << "Select Your Position between 1 to 9 : ";
         int choice;
         cin >> choice;
         choice--;
@@ -174,22 +163,25 @@ char checkWinner()
 void playerVsPlayer()
 {
     string x_player_name, o_player_name;
-    cout << "Enter x player name: " << endl;
+    cout << "Enter 1st player name: " << endl;
     cin >> x_player_name;
-    cout << "Enter o player name: " << endl;
+    cout << x_player_name << " your positions will be marked as X." << endl;
+    cout << "Enter 2nd player name: " << endl;
     cin >> o_player_name;
+    cout << o_player_name << " your positions will be marked as O." << endl;
+    system("pause");
     while (true)
     {
         system("cls");
         show_board();
         if (boardCount('X') == boardCount('O'))
         {
-            cout << x_player_name << "'s Turn." << endl;
+            cout << x_player_name << "'s Turn: " << endl;
             xChoice();
         }
         else
         {
-            cout << o_player_name << "'s Turn." << endl;
+            cout << o_player_name << "'s Turn: " << endl;
             oChoice();
         }
         char winner = checkWinner();
@@ -197,19 +189,21 @@ void playerVsPlayer()
         {
             system("cls");
             show_board();
-            cout << x_player_name << " won the game." << endl;
+            cout << "Hurray " << x_player_name << "! you won the game." << endl;
             break;
         }
         else if (winner == 'O')
         {
             system("cls");
             show_board();
-            cout << o_player_name << " won the game." << endl;
+            cout << "Hurray " << o_player_name << "! you won the game." << endl;
             break;
         }
         else if (winner == 'D')
         {
-            cout << "Game is Draw." << endl;
+            system("cls");
+            show_board();
+            cout << "Oops! It's a Draw." << endl;
             break;
         }
     }
@@ -217,13 +211,13 @@ void playerVsPlayer()
 
 int main()
 {
-    cout << "This is the sample board and the given positions will be used to take input." << endl;
+    cout << "\nThis is the sample board and the given positions will be used to take input." << endl;
     sample_board();
     char play;
     do
     {
         playerVsPlayer();
-        cout << "play?";
+        cout << "Do you want to play again? Enter 'y' for yes and 'n' for no: ";
         cin >> play;
         clear_board();
     } while (play == 'y');
