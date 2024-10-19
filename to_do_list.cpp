@@ -26,7 +26,7 @@ void displayMenu()
 }
 
 // to view task
-void viewTasks(Task all_tasks[], int taskCount)
+void viewTasks(Task all_tasks[], int taskCount) //we have passed taskCount copy as we only want to read this not modify. (Pass by value)
 {
     if (taskCount == 0)
     {
@@ -43,7 +43,8 @@ void viewTasks(Task all_tasks[], int taskCount)
 }
 
 // add a task
-void addTask(Task all_tasks[], int &taskCount)
+void addTask(Task all_tasks[], int &taskCount) /*we have used & in taskCount to make it pass by reference so that it 
+can modify and that will affect the original value as well so that it also reflects outside the function*/
 {
     if (taskCount >= MAX_TASKS)
     {
