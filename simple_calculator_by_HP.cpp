@@ -23,7 +23,7 @@ int main()
         cout << "Subtraction will be: " << n1 - n2 << endl;
         break;
     case '*':
-        cout << "Multiplication will be: " << float(n1) * float(n2) << endl;
+        cout << "Multiplication will be: " << n1 * n2 << endl;
         break;
     case '/':
         cout << "Division will be: " << float(n1) / float(n2) << endl;
